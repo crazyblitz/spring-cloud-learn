@@ -1,0 +1,37 @@
+
+spring:
+  application:
+    name: api-gateway-with-eureka
+
+server:
+  port: 9001
+
+#服务路由
+zuul:
+  routes:
+    #服务升级,将某服务的某些功能拆分到另外一个全新功能服务hello-service-ext
+    #拆分的外部调用URL路径希望能够符合规则/hello-service/ext/**
+    #保证路由的优先顺序(Zuul内部路由是用LinkedHashMap存储的)
+    hello-service-ext:
+     path: /hello-service/ext/**
+     serviceId: hello-service-ext #这只是个示例
+    hello-service:
+      path: /hello-service/**
+      serviceId: hello-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+
+
+#负载均衡配置,默认情况下,Ribbon会根据服务发现机制来获取
+#配置服务名对应的实例清单
+#如果没有整合类似Eureka之类的服务治理框架,得配置下面示例:
+#ribbon:
+#  eureka:
+#   enabled: false
+
+management:
+  security:
+    enabled: false

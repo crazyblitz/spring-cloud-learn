@@ -1,0 +1,19 @@
+#spring cloud config 支持安全访问权限
+spring:
+  application:
+    #指定配置文件规则中的{application}部分
+    name: config-client
+  cloud:
+    config:
+      #对应配置文件中的{profile}
+      profile: v1
+      #对应配置文件中的{master}
+      label: master
+      uri: http://localhost:9099/
+      #对spring.application.name进行覆盖
+      name: jdbc
+      #客户端加上安全保护
+      username: user
+      password: 40bd1895-64f9-4b2d-b469-9db2e0c5cef12
+      #快速失败
+      fail-fast: true

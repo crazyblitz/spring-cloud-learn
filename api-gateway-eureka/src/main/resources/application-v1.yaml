@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: api-gateway-with-eureka
+
+server:
+  port: 9000
+  error:
+    path: /zuul/error
+
+
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: eureka-provider
+#  SendErrorFilter:
+#    error:
+#      disable: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 15
+    hostname: localhost
+management:
+  security:
+    enabled: false
+
+

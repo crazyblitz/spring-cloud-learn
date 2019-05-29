@@ -1,0 +1,25 @@
+
+
+#消息消费者分区功能
+spring:
+  application:
+    name: stream-rabbit-group-consumer
+
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root
+
+  cloud:
+    stream:
+      bindings:
+        #输入通道
+        input:
+          #content-type: application/json
+          group: hello-service #组
+          destination: hello   #通道目标主题
+          consumer:
+            partitioned: true #开启消费者分区功能
+            instanceCount: 2 #当前消费者实例数量
+            instanceIndex: 1 #当前实例的索引号,从0开始,最大值为-1.每个消息消费者实例索引号不同

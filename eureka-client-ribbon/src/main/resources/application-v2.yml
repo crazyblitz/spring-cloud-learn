@@ -1,0 +1,33 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: eureka-client-ribbon
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true #开启重试机制
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15 #服务剔除>服务续约时间
+#logging:
+#  file: eureka-client-ribbon/${spring.application.name}-v2.log
+
+
+
+
+#ribbon配置,key-value配置类:CommonClientConfigKey
+#need add spring retry
+eureka-provider:
+  ribbon:
+    ConnectTimeout: 250 #单位ms,请求连接超时时间
+    ReadTimeout: 1000 #单位ms,请求处理的超时时间
+    OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+    MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+    MaxAutoRetries: 1 #对当前实例的重试次数

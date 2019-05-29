@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 9001
+
+zuul:
+  routes:
+#  multi-instance
+    api-b:
+      path: /api-b/**
+      serviceId: api-b
+
+#<ribbonClient>.ribbon.listOfServers的<ribbonClient>要和zuul.routes.<zuulClient>.serviceId的serviceId对应
+
+api-b:
+  ribbon:
+    listOfServers: http://localhost:1908/, http://localhost:1289/

@@ -1,0 +1,10 @@
+management:
+  security:
+    enabled: false
+server:
+  port: 9090
+spring:
+  boot:
+    admin:
+      url: http://localhost:9091
+

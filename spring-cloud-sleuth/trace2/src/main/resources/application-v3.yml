@@ -1,0 +1,17 @@
+#spring cloud sleuth 整合 spring cloud sleuth zipkin stream
+server:
+  port: 9001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5 #服务续约
+    lease-expiration-duration-in-seconds: 10 #服务剔除>服务续约时间
+spring:
+  #消息中间件配置
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root

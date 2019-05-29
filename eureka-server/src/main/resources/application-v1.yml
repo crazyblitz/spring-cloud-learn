@@ -1,0 +1,24 @@
+server:
+  port: 8089
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15 #服务剔除>服务续约时间
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+
+spring:
+  application:
+    name: eureka-provider
+management:
+  security:
+    enabled: false #spring boot actuator端点监控安全是否启用属性
+
+
+
+
+

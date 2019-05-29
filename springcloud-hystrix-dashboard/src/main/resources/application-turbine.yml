@@ -1,0 +1,31 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    #服务剔除>服务续约时间
+    lease-expiration-duration-in-seconds: 15
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  application:
+    name: turbine-app
+management:
+  security:
+    enabled: false
+turbine:
+  #指定需要收集监控信息服务名
+  app-config: EUREKA-RIBBON-HYSTRIX
+  #同一主机上的服务通过主机名和端口号的组合进行区分,默认使用
+  #以host区分不同的服务
+  combine-host-port: true
+  aggregator:
+    # 指定聚合哪些集群，多个使用","分割，默认为default。
+    cluster-config: default
+  cluster-name-expression: new String("default")
+server:
+  port: 9097
+
+
+

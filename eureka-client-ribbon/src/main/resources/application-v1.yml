@@ -1,0 +1,34 @@
+
+server:
+  port: 9002
+
+spring:
+  application:
+    name: eureka-client-ribbon
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15 #服务剔除>服务续约时间
+ribbon:
+  eager-load:
+    enabled: true
+#logging:
+#  file: eureka-client-ribbon/${spring.application.name}-v1.log
+
+
+eureka-provider:
+  ribbon:
+    #配置Ribbon负载均衡规则:IRule
+    NFLoadBalancerRuleClassName: com.ley.springcloud.client.rule.MyRoundRobinRule
+    #配置Ribbon实例检查策略:IPing
+    NFLoadBalancerPingClassName:
+    #配置负载均衡器
+    NFLoadBalancerClassName:
+    #配置服务实例清单维护机制
+    NIWSServerListClassName:
+    #配置服务清单过滤机制
+    NIWSServerListFilterClassName:

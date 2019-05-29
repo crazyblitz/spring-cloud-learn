@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 9000
+
+zuul:
+  routes:
+#  single-instance
+    api-a:
+      path: /api-a/**
+      url: http://localhost:1908/

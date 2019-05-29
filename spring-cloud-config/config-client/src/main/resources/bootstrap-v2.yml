@@ -1,0 +1,31 @@
+server:
+  port: 9096
+spring:
+  application:
+    #指定配置文件规则中的{application}部分
+    name: config-client
+  cloud:
+    config:
+      #对应配置文件中的{profile}
+      profile: dev
+      #对应配置文件中的{master}
+      label: master
+      #对spring.application.name进行覆盖
+      name: user
+      discovery:
+       #开启通过服务访问Config Server功能
+        enabled: true
+         #Config Server的服务名
+        service-id: eureka-config-server
+
+#配置服务注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+management:
+  security:
+    enabled: false

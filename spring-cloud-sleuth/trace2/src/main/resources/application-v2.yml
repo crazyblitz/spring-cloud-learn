@@ -1,0 +1,22 @@
+
+server:
+  port: 9002
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5 #服务续约
+    #服务剔除>服务续约时间
+    lease-expiration-duration-in-seconds: 10
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+
+spring:
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      percentage: 1
+  application:
+    name: trace-2

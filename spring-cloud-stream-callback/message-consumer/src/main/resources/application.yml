@@ -1,0 +1,20 @@
+
+spring:
+  application:
+    name: stream-rabbit
+
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root
+  #消息反馈
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: channel-a
+        output:
+          destination: channel-b
+server:
+  port: 9091

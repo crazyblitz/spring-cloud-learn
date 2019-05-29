@@ -1,0 +1,17 @@
+package com.ley.springcloud.client.config;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+/**
+ *我的世界
+ * **/
+@EnableDiscoveryClient
+@SpringBootApplication
+public class ConfigApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ConfigApplication.class, args);
+    }
+}

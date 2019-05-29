@@ -1,0 +1,9 @@
+
+
+spring:
+  profiles:
+    active: v1
+  http:
+    encoding:
+      charset: UTF-8
+      force: true

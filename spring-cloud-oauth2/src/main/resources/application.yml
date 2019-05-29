@@ -1,0 +1,22 @@
+
+server:
+  port: 8799
+spring:
+  redis:
+    host: localhost
+    port: 6379
+
+#安全配置
+security:
+  #oauth2配置
+  oauth2:
+    resource:
+      filter-order: 3
+#  user:
+#    name: admin
+#    password: admin
+management:
+  security:
+    enabled: false
+
+

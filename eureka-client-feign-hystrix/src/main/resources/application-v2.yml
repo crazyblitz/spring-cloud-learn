@@ -1,0 +1,12 @@
+
+feign:
+  compression:
+    request:
+      #请求数据类型
+      mime-types: "text/xml", "application/xml", "application/json"
+      #请求压缩的大小下限
+      min-request-size: 4096
+  client:
+    config:
+
+

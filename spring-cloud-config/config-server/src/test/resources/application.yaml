@@ -1,0 +1,5 @@
+#password encrypt
+jasypt:
+  encryptor:
+    #encrypt key
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7

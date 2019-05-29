@@ -1,0 +1,17 @@
+
+
+
+server:
+  port: 9000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 5 #服务续约
+    lease-expiration-duration-in-seconds: 10 #服务剔除>服务续约时间
+#整合Logstash,logback-spring.xml加载要在application.yml前面,无法获取
+#spring.application.name
+#spring:
+#  application:
+#    name: trace-1

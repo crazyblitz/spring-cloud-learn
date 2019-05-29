@@ -1,0 +1,4 @@
+
+logging:
+  #log配置文件位置
+  config: classpath:logback-spring-trace-1.xml

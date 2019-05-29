@@ -1,0 +1,17 @@
+#消息生产者
+spring:
+  application:
+    name: stream-rabbit-group-producer
+
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root
+
+  cloud:
+    stream:
+      bindings:
+        #输入通道
+        output:
+           destination: hello #输出通道目标主题

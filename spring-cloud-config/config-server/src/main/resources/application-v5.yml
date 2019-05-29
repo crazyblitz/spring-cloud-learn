@@ -1,0 +1,47 @@
+
+#使用spring cloud bus进行刷新Git远程配置
+spring:
+  application:
+    name: config-bus-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/ley1996/spring-cloud-learn.git
+          search-paths: eureka-config/src/main/resources/config
+          username: ley1996
+          password: ENC(Xlko242EkRvnpNdD4+H0Xr0ojA3ipJib)
+    bus:
+      #对spring cloud bus消息跟踪
+      trace:
+        enabled: true
+  #配置消息中间件rabbitmq
+  rabbitmq:
+    host: ENC(NYRQnpMgmZHHk6+PvtH1PXi3QW9qe6ka)
+    port: 5672
+    username: ENC(nLTNGIGADa0MYZ5sVUDdEQ==)
+    password: ENC(f+HR8TCGs3Og0Hgb9POjoA==)
+
+server:
+  port: 9099
+
+management:
+  security:
+    enabled: false
+
+#配置服务注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 10
+
+#password encrypt
+jasypt:
+  encryptor:
+    #encrypt key
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7

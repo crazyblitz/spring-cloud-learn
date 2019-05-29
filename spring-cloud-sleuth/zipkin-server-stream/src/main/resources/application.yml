@@ -1,0 +1,13 @@
+spring:
+  #消息中间件配置
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root
+  application:
+    name: zipkin-server-stream
+  profiles: v1
+server:
+  port: 9411
+

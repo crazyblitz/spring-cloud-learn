@@ -1,0 +1,16 @@
+
+server:
+  port: ${random.int(7000,8000)}
+spring:
+  application:
+    name: ribbon-server
+  health:
+    id: ${random.uuid}
+    state: "UP"
+management:
+  security:
+    enabled: false
+  port: 9090
+
+
+

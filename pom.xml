@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ley.springcloud</groupId>
+    <artifactId>springcloud-learn</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>eureka-registry</module>
+        <module>eureka-server</module>
+        <module>eureka-client</module>
+        <module>eureka-client-ribbon</module>
+        <module>eureka-client-ribbon-hystrix</module>
+        <module>eureka-client-feign</module>
+        <module>eureka-client-feign-hystrix</module>
+        <module>eureka-feign</module>
+        <module>api-gateway</module>
+        <module>api-gateway-eureka</module>
+        <module>api-gateway-swagger</module>
+        <module>spring-cloud-config</module>
+        <module>spring-cloud-bus</module>
+        <module>spring-cloud-stream</module>
+        <module>spring-cloud-sleuth</module>
+        <module>spring-cloud-endpoint</module>
+        <module>ribbon-learn</module>
+        <module>springboot-admin</module>
+        <module>springcloud-hystrix-dashboard</module>
+        <module>eureka-config</module>
+        <module>spring-cloud-stream-callback</module>
+        <module>spring-cloud-oauth2</module>
+        <module>micro-cache</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <!--properties configuration-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <lombok.version>1.16.8</lombok.version>
+        <spring-framework-bom.version>4.3.13.RELEASE</spring-framework-bom.version>
+        <spring.boot.version>1.5.12.RELEASE</spring.boot.version>
+        <platform-bom.version>Brussels-SR9</platform-bom.version>
+        <spring-cloud.version>Edgware.SR5</spring-cloud.version>
+        <spring.boot.admin.version>1.5.6</spring.boot.admin.version>
+        <jasypt.version>1.18</jasypt.version>
+    </properties>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.12.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${platform-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--
+               lombok 1.16.8
+            -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- data encrypt -->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server -->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-login</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.12.RELEASE</version>
+                <!--must configuration executable-->
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

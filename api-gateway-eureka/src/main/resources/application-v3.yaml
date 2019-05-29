@@ -1,0 +1,79 @@
+#zuul.routes.<route>.path和zuul.routes.<route>.url参数对进行配置
+zuul:
+  routes:
+    #传统路由配置
+    #单实例配置
+    user-service:
+      path: /user-service/**
+      url: http://localhost:8080/
+    #多实例配置
+    user-service1:
+      path: /user-service1/**
+      serviceId: user-service1
+
+
+    #服务路由配置
+    api-a:
+      path: /api-a/**
+      serviceId: eureka-provider
+      retryable: false #关闭指定路由重试机制
+
+    #服务升级,将某服务的某些功能拆分到另外一个全新功能服务hello-service-ext
+    #拆分的外部调用URL路径希望能够符合规则/hello-service/ext/**
+    #保证路由的优先顺序
+    hello-service-ext:
+     path: /hello-service/ext/**
+     serviceId: hello-service-ext
+    hello-service:
+      path: /hello-service/**
+      serviceId: hello-service
+
+
+  #忽略该服务
+  ignored-services: hello-service
+
+  #忽略表达式(用来忽略接口)
+  ignored-patterns: /**/hello/**
+
+  #Cookie和头信息
+  #Spring Cloud Zuul在请求路由时,会过滤掉HTTP请求头信息的敏感信息,
+  #如果使用权限框架,例如Shiro,Spring Security等安全框架构建的Web
+  #应用通过Spring Cloud Zuul构建网关路由时,由于Cookie信息无法传递
+  #,Web应用无法实现登录和鉴权
+
+  #通过指定路由参数配置
+  #方法1:对指定路由开启自定义敏感头zuul.routes.<route>.customSensitiveHeaders
+  hello-service1:
+    customSensitiveHeaders: true
+  #方法2:将指定路由敏感头设置为空zuul.routes.<route>.sensitiveHeaders
+  hello-service2:
+    sensitiveHeaders:
+
+  #重定向问题
+  #解决了Cookie问题,能够通过网关访问并登录到我们的Web应用,但是发现跳转的是
+  #具体Web应用实例地址,而不是通过网关的路由地址
+
+  #zuul.addHostHeaders,解决网关在进行路由转发前为请求设置Host头信息,表示服务端
+  #请求地址
+  add-host-header: true
+  retryable: false #关闭全局重试机制
+
+
+
+
+#负载均衡配置,默认情况下,Ribbon会根据服务发现机制来获取
+#配置服务名对应的实例清单
+#如果没有整合类似Eureka之类的服务治理框架,得配置下面示例:
+ribbon:
+  eureka:
+    enabled: false
+
+#服务服务地址
+user-service1:
+  ribbon:
+    listOfServers: http://localhost:8080/,http:localhost:8081/
+
+#禁用过滤器:
+#zuul.<SimpleClassName>.<filterType>.disable=true
+#<SimpleClassName>表示过滤器类名,<filterType>是过滤器类型
+#示例: zuul.AccessFilter.pre.disable=true

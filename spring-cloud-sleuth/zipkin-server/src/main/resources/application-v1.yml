@@ -1,0 +1,18 @@
+
+#zipkin数据存储
+
+spring:
+  datasource:
+    schema: classpath:/mysql.sql
+    url: jdbc:mysql://localhost:3306/zipkin
+    username: root
+    password: root
+    continue-on-error: true
+    initialize: true
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: zipkin-server-mysql
+#切换数据类型
+zipkin:
+  storage:
+    type: mysql

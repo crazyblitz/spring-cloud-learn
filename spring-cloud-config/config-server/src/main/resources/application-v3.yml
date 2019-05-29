@@ -1,0 +1,28 @@
+
+#安全检查
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/ley1996/spring-cloud-study.git
+          search-paths: config-server
+          username: ley1996
+          password: ENC(Xlko242EkRvnpNdD4+H0Xr0ojA3ipJib)
+        health:
+          repositories:
+           check:
+            name: config-server
+            label: master
+            profiles: v1
+
+server:
+  port: 9099
+
+#password encrypt
+jasypt:
+  encryptor:
+    #encrypt key
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7

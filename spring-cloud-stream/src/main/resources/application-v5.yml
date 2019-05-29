@@ -1,0 +1,20 @@
+#消息生产者分区配置,只有一个消费实例在接受和处理这些相同的消息
+spring:
+  application:
+    name: stream-rabbit-group-producer
+
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root
+
+  cloud:
+    stream:
+      bindings:
+        #输入通道
+        output:
+           destination: hello #输出通道目标主题
+           producer:
+              partitionKeyExpression: payload #分区键表达式规则
+              partitionCount: 2 #消息分区数量

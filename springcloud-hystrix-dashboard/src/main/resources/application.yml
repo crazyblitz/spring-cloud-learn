@@ -1,0 +1,6 @@
+
+server:
+  port: 9800
+spring:
+  profiles:
+    active: hystrix-dashboard

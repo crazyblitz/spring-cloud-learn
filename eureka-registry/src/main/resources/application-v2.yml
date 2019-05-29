@@ -1,0 +1,29 @@
+
+server:
+  port: 1111
+
+eureka:
+  server:
+    enable-self-preservation: false #关闭保护机制
+    eviction-interval-timer-in-ms: 6000 #剔除失效服务间隔
+  instance:
+    hostname: localhost
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+  client:
+    registerWithEureka: false #该应用是注册中心,代表不向注册中心注册自己
+    fetchRegistry: false #由于注册中心职责是维护服务实例,它并不需要检索服务
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  application:
+    name: eureka-service-registry
+
+#增加前缀修改
+management:
+  context-path: /hello
+
+
+
+

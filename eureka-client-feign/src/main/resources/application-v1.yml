@@ -1,0 +1,29 @@
+server:
+  port: 9002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15 #服务剔除>服务续约时间
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+spring:
+  application:
+    name: eureka-client-feign
+feign:
+  client:
+    config:
+      eureka-provider:
+        logger-level: full
+  hystrix:
+    enabled: true
+logging:
+  level:
+    com.ley.springcloud.feign.service: debug
+
+
+
+

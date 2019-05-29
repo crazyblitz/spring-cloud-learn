@@ -1,0 +1,21 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: eureka-feign-client
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+    #eureka client刷新本地缓存时间,默认30s
+    registry-fetch-interval-seconds: 5
+
+feign:
+  hystrix:
+    enabled: true
+
+ribbon:
+  #eureka客户端ribbon刷新时间,默认30s
+  ServerListRefreshInterval: 5000

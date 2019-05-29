@@ -1,0 +1,57 @@
+
+management:
+  security:
+    enabled: false
+server:
+  port: 9003
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+
+spring:
+  application:
+    name: admin-monitor
+  boot:
+    admin:
+      turbine:
+        location: ${spring.application.name}
+        clusters: default
+      routes:
+        endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+      discovery:
+        services: "*"
+      monitor:
+        period: 30000
+        status-lifetime: 30000
+
+
+turbine:
+  #指定需要收集监控信息服务名
+  app-config: EUREKA-FEIGN-HYSTRIX
+  clusterNameExpression: new String("default")
+  combine-host-port: true
+
+security:
+ user:
+   name: admin
+   password: admin
+ basic:
+   enabled: false
+logging:
+  config: classpath:spring-logback.xml
+  path: ${user.home}/logs
+
+
+info:
+  version: @pom.version@
+  name: @pom.artifactId@
+
+
+

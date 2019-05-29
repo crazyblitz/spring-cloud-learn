@@ -1,0 +1,28 @@
+server:
+  port: 9001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15 #服务剔除>服务续约时间
+    instance-id: ${spring.application.name}:${server.port}
+    hostname: localhost
+
+
+spring:
+  application:
+    name: eureka-feign-hystrix
+  boot:
+    admin:
+      username: admin
+      password: admin
+management:
+  security:
+    enabled: false
+
+feign:
+  hystrix:
+    enabled: true

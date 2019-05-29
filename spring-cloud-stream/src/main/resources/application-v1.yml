@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: stream-rabbit
+
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root

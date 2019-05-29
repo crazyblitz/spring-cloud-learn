@@ -1,0 +1,9 @@
+#server:
+#  port: 9095
+
+
+management:
+  security:
+    enabled: false
+server:
+  port: 9096

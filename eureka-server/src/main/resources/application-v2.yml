@@ -1,0 +1,27 @@
+server:
+  port: ${randomServerPort.value[1000,2000]} #随机端口启动,不建议使用${random.int[min,max]}方式,会造成tomcat启动端口和eureka端口启动不一致问题,原因
+          #生成随机数调用2次
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    lease-renewal-interval-in-seconds: 10 #服务续约
+    lease-expiration-duration-in-seconds: 15 #服务剔除>服务续约时间
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  application:
+    name: eureka-provider
+  boot:
+    admin:
+      password: admin
+      username: admin
+management:
+  security:
+    enabled: false
+
+

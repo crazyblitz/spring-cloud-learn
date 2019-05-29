@@ -1,0 +1,24 @@
+
+#spring cloud bus 整合 spring cloud config
+
+spring:
+  application:
+    #指定配置文件规则中的{application}部分
+    name: config-client
+  cloud:
+    config:
+      #对应配置文件中的{profile}
+      profile: v1,v2
+      #对应配置文件中的{master}
+      label: master
+      #对spring.application.name进行覆盖
+      name: server,jdbc
+      discovery:
+        enabled: true
+        service-id: config-bus-server
+
+#配置服务注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/

@@ -1,0 +1,7 @@
+
+#v2,v4是对消息组的环境
+spring:
+  profiles:
+    active: v4
+server:
+  port: ${random.int(8000,9000)}

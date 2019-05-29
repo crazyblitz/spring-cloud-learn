@@ -1,0 +1,12 @@
+
+server:
+  port: 9700
+spring:
+  application:
+    name: ribbon-client
+
+
+ribbon-server:
+  ribbon:
+    listOfServers: localhost:7227,localhost:7442
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule

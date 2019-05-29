@@ -1,0 +1,37 @@
+
+#配置Git管理配置
+spring:
+  application:
+    name: eureka-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/ley1996/spring-cloud-learn.git
+          search-paths: eureka-config/src/main/resources/config
+          username: ley1996
+          password: ENC(Xlko242EkRvnpNdD4+H0Xr0ojA3ipJib)
+
+server:
+  port: 9099
+
+#配置服务注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 10
+
+
+#password encrypt
+jasypt:
+  encryptor:
+    #encrypt key
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7
+management:
+  security:
+    enabled: false

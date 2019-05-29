@@ -1,0 +1,30 @@
+
+#spring cloud config带Git安全验证
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/ley1996/spring-cloud-study.git
+          search-paths: config-server
+          username: ley1996
+          password: ENC(Xlko242EkRvnpNdD4+H0Xr0ojA3ipJib)
+
+server:
+  port: 9099
+
+#安全保护
+security:
+  user:
+    name: user
+    password: 40bd1895-64f9-4b2d-b469-9db2e0c5cef12
+
+#password encrypt
+jasypt:
+  encryptor:
+    #encrypt key
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7
+
+

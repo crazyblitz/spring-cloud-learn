@@ -1,0 +1,21 @@
+server:
+  port: 9700
+
+spring:
+  application:
+    name: eureka-config
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    #服务续约
+    lease-renewal-interval-in-seconds: 10
+    #服务剔除>服务续约时间
+    lease-expiration-duration-in-seconds: 15
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+management:
+  security:
+    enabled: false

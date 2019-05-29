@@ -1,0 +1,20 @@
+
+#消息消费者分组解决消息被消费一次
+spring:
+  application:
+    name: stream-rabbit-group-consumer
+
+  rabbitmq:
+    host: softyuan.cn
+    port: 5672
+    username: root
+    password: root
+
+  cloud:
+    stream:
+      bindings:
+        #输入通道
+        input:
+          content-type: application/json
+          group: hello-service #组
+          destination: hello   #通道目标主题
