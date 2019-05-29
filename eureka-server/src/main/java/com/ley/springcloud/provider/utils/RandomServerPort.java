@@ -28,7 +28,7 @@ public class RandomServerPort {
         start = start < this.start ? this.start : start;
         end = end > this.end ? this.end : end;
 
-        //双重加锁
+        //双重检查
         //先判断serverPort==0
         if (serverPort == 0) {
             synchronized (lock) {
