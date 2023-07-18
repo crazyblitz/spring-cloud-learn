@@ -46,7 +46,7 @@
         <spring.boot.version>1.5.12.RELEASE</spring.boot.version>
         <platform-bom.version>Brussels-SR9</platform-bom.version>
         <spring-cloud.version>Edgware.SR5</spring-cloud.version>
-        <spring.boot.admin.version>1.5.6</spring.boot.admin.version>
+        <spring.boot.admin.version>3.1.2</spring.boot.admin.version>
         <jasypt.version>1.18</jasypt.version>
     </properties>
 
